@@ -1,0 +1,471 @@
+package com.example.sistemas.myapplication;
+
+import android.os.Bundle;
+
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+
+import android.widget.Button;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+
+
+    }
+    boolean Jogador1Ativo=true;
+    boolean Jogador2Ativo=false;
+    int vitoriajog1=0;
+    int vitoriajog2=0;
+    int numempate=0;
+
+    private Button B1 ;
+    private Button B2;
+    private Button B3;
+    private Button B4 ;
+    private Button B5;
+    private Button B6 ;
+    private Button B7 ;
+    private Button B8 ;
+    private Button B9;
+    private Button NovoJogo;
+    private Button sobre ;
+    private Button sair ;
+    private TextView NumVitJ1;
+    private TextView NumVitJ2;
+    private TextView NumEmp;
+
+    public  void JogadorAtivo(){
+        if (Jogador1Ativo == true){
+            Jogador1Ativo = false;
+            Jogador2Ativo = true;
+        }else{
+            Jogador1Ativo = true;
+            Jogador2Ativo = false;
+        }
+        JogadorVencedor("X");
+        JogadorVencedor("O");
+    }
+    public void JogadorVencedor(String Jogador){
+       /*verificar linhas*/
+        if(B1.getText().toString().equals(Jogador)&&
+                (B2.getText().toString().equals(Jogador))&&
+                B3.getText().toString().equals(Jogador)){
+            if(B1.getText().toString().equals("X"))
+                Vencedor("Jogador 1");
+            else
+                Vencedor("Jogador 2");
+        }
+        if(B4.getText().toString().equals(Jogador)&&
+                (B5.getText().toString().equals(Jogador))&&
+                B6.getText().toString().equals(Jogador)){
+            if(B4.getText().toString().equals("X"))
+                Vencedor("Jogador 1");
+            else
+                Vencedor("Jogador 2");
+        }
+        if(B7.getText().equals(Jogador)&&
+                (B8.getText().toString().equals(Jogador))&&
+                B9.getText().toString().equals(Jogador)){
+            if(B7.getText().toString().equals("X"))
+                Vencedor("Jogador 1");
+            else
+                Vencedor("Jogador 2");
+        }
+           /*verificar colunas*/
+        if(B1.getText().equals(Jogador)&&
+                (B4.getText().toString().equals(Jogador))&&
+                B7.getText().toString().equals(Jogador)){
+            if(B1.getText().toString().equals("X"))
+                Vencedor("Jogador 1");
+            else
+                Vencedor("Jogador 2");
+        }
+        if(B2.getText().toString().equals(Jogador)&&
+                (B5.getText().toString().equals(Jogador))&&
+                B8.getText().toString().equals(Jogador)){
+            if(B2.getText().toString().equals("X"))
+                Vencedor("Jogador 1");
+            else
+                Vencedor("Jogador 2");
+        }
+        if(B3.getText().toString().equals(Jogador)&&
+                (B6.getText().toString().equals(Jogador))&&
+                B9.getText().toString().equals(Jogador)){
+            if(B3.getText().toString().equals("X"))
+                Vencedor("Jogador 1");
+            else
+                Vencedor("Jogador 2");
+        }
+            /*verificar diagonais*/
+        if(B1.getText().toString().equals(Jogador)&&
+                (B5.getText().toString().equals(Jogador))&&
+                B9.getText().toString().equals(Jogador)){
+            if(B1.getText().toString().equals("X"))
+                Vencedor("Jogador 1");
+            else
+                Vencedor("Jogador 2");
+        }
+        if(B3.getText().toString().equals(Jogador)&&
+                (B5.getText().toString().equals(Jogador))&&
+                B7.getText().toString().equals(Jogador)){
+            if(B3.getText().toString().equals("X"))
+                Vencedor("Jogador 1");
+            else
+                Vencedor("Jogador 2");
+        }
+        if(!B1.getText().toString().equals("")&&
+                !B2.getText().toString().equals("")&&
+                !B3.getText().toString().equals("")&&
+                !B4.getText().toString().equals("")&&
+                !B5.getText().toString().equals("")&&
+                !B6.getText().toString().equals("")&&
+                !B7.getText().toString().equals("")&&
+                !B8.getText().toString().equals("")&&
+                !B9.getText().toString().equals("")){
+            Vencedor("Empate");
+        }
+    }
+    public void Vencedor(String JogadorVencedor){
+        if (JogadorVencedor.equals("Jogador 1")){
+
+            //  JOptionPane.showMessageDialog(null, "Parabens Jogador 1"); java code
+            AlertDialog.Builder dlg;
+            dlg = new AlertDialog.Builder(this);
+            dlg.setMessage("Parabens Jogador 1");
+            dlg.setNeutralButton("OK",null);
+            dlg.show();
+
+            vitoriajog1++;
+            NumVitJ1.setText("Numeros de vitorias:"+vitoriajog1);
+            LimpaCampos();
+        }
+        else
+
+        if (JogadorVencedor.equals("Jogador 2")){
+          //  JOptionPane.showMessageDialog(null, "Parabens Jogador 2");
+            AlertDialog.Builder dlg;
+            dlg = new AlertDialog.Builder(this);
+            dlg.setMessage("Parabens Jogador 2");
+            dlg.setNeutralButton("OK",null);
+            dlg.show();
+
+            vitoriajog2++;
+            NumVitJ2.setText("Numeros de vitorias:"+vitoriajog2);
+            LimpaCampos();
+        }else{
+            if (JogadorVencedor.equals("Empate")){
+         //       JOptionPane.showMessageDialog(null, "Jogo Empatado, jogue novamente");
+                AlertDialog.Builder dlg;
+            dlg = new AlertDialog.Builder(this);
+            dlg.setMessage("Jogo Empatado, jogue novamente");
+            dlg.setNeutralButton("OK",null);
+            dlg.show();
+
+            numempate++;
+            NumEmp.setText("Numeros de Empates:"+numempate);
+            LimpaCampos();
+        }
+    }
+    public void LimpaCampos(){
+        B1.setText("");
+        B2.setText("");
+        B3.setText("");
+        B4.setText("");
+        B5.setText("");
+        B6.setText("");
+        B7.setText("");
+        B8.setText("");
+        B9.setText("");
+        Jogador1Ativo = true;
+        Jogador2Ativo = false;
+
+    }
+
+
+        Button B1 = (Button) findViewById(R.id.B1);
+
+
+        B1.setOnClickListener = ( new View.OnClickListener() {
+            public void onClick(View v) {
+
+                if(Jogador1Ativo==true){
+                    if(B1.getText().toString().equals("")) {
+                        B1.setText("X");
+
+                        JogadorAtivo();
+                    }
+                }else {
+                    if(B1.getText().toString().equals("")) {
+                        B1.setText("O");
+
+                        JogadorAtivo();
+                    }
+                }        // TODO add your handling code here:
+            }//GEN-LAST:event_B1ActionPerformed
+
+        });
+
+        Button B2 = (Button) findViewById(R.id.B2);
+
+        B2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                B2onClick(v); // Code here executes on main thread after user presses button
+            }
+        });
+
+        Button B3 = (Button) findViewById(R.id.B3);
+
+        B3.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                B3onClick(v); // Code here executes on main thread after user presses button
+            }
+        });
+
+        Button B4 = (Button) findViewById(R.id.B4);
+
+        B4.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                B4onClick(v); // Code here executes on main thread after user presses button
+            }
+        });
+
+        Button B5 = (Button) findViewById(R.id.B5);
+
+        B5.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                B5onClick(v); // Code here executes on main thread after user presses button
+            }
+        });
+
+        Button B6 = (Button) findViewById(R.id.B6);
+
+        B6.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                B6onClick(v); // Code here executes on main thread after user presses button
+            }
+        });
+
+        Button B7 = (Button) findViewById(R.id.B7);
+
+        B7.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                B7onClick(v); // Code here executes on main thread after user presses button
+            }
+        });
+
+        Button B8 = (Button) findViewById(R.id.B8);
+
+        B8.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                B8onClick(v); // Code here executes on main thread after user presses button
+            }
+        });
+
+        Button B9 = (Button) findViewById(R.id.B9);
+
+        B9.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                B9onClick(v); // Code here executes on main thread after user presses button
+            }
+        });
+
+        Button NovoJogo = (Button) findViewById(R.id.NovoJogo);
+
+        NovoJogo.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                NovoJogoonClick(v); // Code here executes on main thread after user presses button
+            }
+        });
+
+        Button sobre = (Button) findViewById(R.id.sobre);
+
+        sobre.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                sobreonClick(v); // Code here executes on main thread after user presses button
+            }
+        });
+
+        Button sair = (Button) findViewById(R.id.sair);
+
+        sair.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                saironClick(v); // Code here executes on main thread after user presses button
+            }
+        });
+
+        TextView NumVitJ1 = (TextView) findViewById(R.id.NumVitJ1);
+        TextView  NumVitJ2 = (TextView) findViewById(R.id.NumVitJ2);
+        TextView NumEmp = (TextView) findViewById(R.id.NumEmp);
+
+
+
+
+    }// </editor-fold>//GEN-END:initComponents
+
+
+
+
+
+
+    private void B3onClick(View v) {
+        if(Jogador1Ativo==true){
+            if(B3.getText().toString().equals("")) {
+                B3.setText("X");
+
+                JogadorAtivo();
+            }
+        }else {
+            if(B3.getText().toString().equals("")) {
+                B3.setText ("O");
+
+                JogadorAtivo();
+            }
+        }
+    }//GEN-LAST:event_B3ActionPerformed
+
+    private void B4onClick(View v) {
+        if(Jogador1Ativo==true){
+            if(B4.getText().toString().equals("")) {
+                B4.setText("X");
+
+                JogadorAtivo();
+            }
+        }else {
+            if(B4.getText().toString().equals("")) {
+                B4.setText("O");
+
+                JogadorAtivo();
+            }
+        } // TODO add your handling code here:
+    }//GEN-LAST:event_B4ActionPerformed
+
+    private void B6onClick(View v) {
+        if(Jogador1Ativo==true){
+            if(B6.getText().toString().equals("")) {
+                B6.setText("X");
+
+                JogadorAtivo();
+            }
+        }else {
+            if(B6.getText().toString().equals("")) {
+                B6.setText("O");
+
+                JogadorAtivo();
+            }
+        }  // TODO add your handling code here:
+    }//GEN-LAST:event_B6ActionPerformed
+
+    private void sobreonClick(View v) {
+        NumVitJ1.setText("Numeros de vitorias:0");
+        LimpaCampos();
+        NumVitJ2.setText("Numeros de vitorias:0");
+        NumEmp.setText("Numeros de Empates:0");
+        numempate=0;
+        vitoriajog1=0;
+        vitoriajog2=0;
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_sobreActionPerformed
+
+    private void saironClick(View v) {
+        System.exit(0);        // TODO add your handling code here:
+    }//GEN-LAST:event_sairActionPerformed
+
+    private void B5onClick(View v) {
+        if(Jogador1Ativo==true){
+            if(B5.getText().toString().equals("")) {
+                B5.setText("X");
+
+                JogadorAtivo();
+            }
+        }else {
+            if(B5.getText().toString().equals("")) {
+                B5.setText("O");
+
+                JogadorAtivo();
+            }
+        }   // TODO add your handling code here:
+    }//GEN-LAST:event_B5ActionPerformed
+
+
+    private void B2onClick(View v) {
+        if(Jogador1Ativo==true){
+            if(B2.getText().toString().equals("")) {
+                B2.setText("X");
+
+                JogadorAtivo();
+            }
+        }else {
+            if(B2.getText().toString().equals("")) {
+                B2.setText("O");
+
+                JogadorAtivo();
+            }
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_B2ActionPerformed
+
+    private void B7onClick(View v) {
+        if(Jogador1Ativo==true){
+            if(B7.getText().toString().equals("")) {
+                B7.setText("X");
+
+                JogadorAtivo();
+            }
+        }else {
+            if(B7.getText().toString().equals("")) {
+                B7.setText("O");
+
+                JogadorAtivo();
+            }
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_B7ActionPerformed
+
+    private void B8onClick(View v) {
+        if(Jogador1Ativo==true){
+            if(B8.getText().toString().equals("")) {
+                B8.setText("X");
+
+                JogadorAtivo();
+            }
+        }else {
+            if(B8.getText().toString().equals("")) {
+                B8.setText("O");
+
+                JogadorAtivo();
+            }
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_B8ActionPerformed
+
+    private void B9onClick(View v) {
+        if(Jogador1Ativo==true){
+            if(B9.getText().toString().equals("")) {
+                B9.setText("X");
+
+                JogadorAtivo();
+            }
+        }else {
+            if(B9.getText().toString().equals("")) {
+                B9.setText("O");
+
+                JogadorAtivo();
+            }
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_B9ActionPerformed
+
+    private void NovoJogoonClick(View v) {
+        LimpaCampos();        // TODO add your handling code here:
+    }//GEN-LAST:event_NovoJogoActionPerformed
+
+
+
+}
