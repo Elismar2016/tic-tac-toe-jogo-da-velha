@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+    <title>Jogo da Velha</title>
+    <style type="text/css">
+<!--
+.bla{
+width: 60px;
+height: 60px;
+background: #ffffff;
+font-size: 28px;
+
+cursor: pointer;
+ border-style: inset;
+    border-width: 5px;
+
+}
+
+.ble{
+background: #00FF00;
+padding:5px;
+}
+.blu{
+width: 100px;
+height: 30px;
+
+  margin-top: 2px;
+
+}
+hr {
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+}
+-->
+</style>
+    <script language="JavaScript" type="text/javascript">
+<!--
+letra = "X";
+	vitJog1=0;
+	vitJog2=0;
+	empate=0;
+function joga(celula){
+    celulaclicada = document.getElementById(celula).innerHTML;
+   if (celulaclicada == "X" || celulaclicada == "O"){
+       alert("Quadro invalido!");
+   }else{
+
+        document.getElementById(celula).innerHTML = letra;
+
+        if (letra == "X"){
+	     document.getElementById(celula).style.color = "red";
+
+
+            letra = "O";
+        }else{
+		document.getElementById(celula).style.color = "Blue";
+            letra = "X";
+        }
+   }
+}
+
+function verif(){
+   c11 = document.getElementById('cel11').innerHTML;
+   c12 = document.getElementById('cel12').innerHTML;
+   c13 = document.getElementById('cel13').innerHTML;
+   c21 = document.getElementById('cel21').innerHTML;
+   c22 = document.getElementById('cel22').innerHTML;
+   c23 = document.getElementById('cel23').innerHTML;
+   c31 = document.getElementById('cel31').innerHTML;
+   c32 = document.getElementById('cel32').innerHTML;
+   c33 = document.getElementById('cel33').innerHTML;
+   if (((c11 != '') && (c12 != '') && (c13 != '') && (c11 == c12) && (c12 == c13)) || ((c11 != '') && (c22 != '') && (c33 != '') && (c11 == c22) && (c22 == c33)) || ((c11 != '') && (c21 != '') && (c31 != '') && (c11 == c21) && (c21 == c31)) || ((c21 != '') && (c22 != '') && (c23 != '') && (c21 == c22) && (c22 == c23)) || ((c31 != '') && (c32 != '') && (c33 != '') && (c31 == c32) && (c32 == c33)) || ((c12 != '') && (c22 != '') && (c32 != '') && (c12 == c22) && (c22 == c32)) || ((c13 != '') && (c23 != '') && (c33 != '') && (c13 == c23) && (c23 == c33)) || ((c31 != '') && (c22 != '') && (c13 != '') && (c31 == c22) && (c22 == c13))){
+       if(letra=="X"){  alert('Parabéns Jogador 2!');
+		vitJog2++;
+	   novo();
+
+	   }else if(letra=="O"){alert('Parabéns Jogador 1!');
+	   vitJog1++;
+	   novo();
+	   letra="X";}
+
+
+
+
+	 }else if((c11 != '') && (c12 != '') && (c13 != '') && (c21 != '') && (c22 != '') && (c23 != '')&& (c31 != '') && (c32 != '') && (c33 != '')){  alert('Jogo Empatado , Jogue novamente!');
+	 ;
+	 empate++;
+	 novo();
+	 letra="X"
+	 }
+
+}
+
+function novo(){
+    for (i=1; i<4; i++){
+       for (j=1; j<4; j++){
+          nomecelula = 'cel' + i + j
+           document.getElementById(nomecelula).innerHTML = '';
+
+      }
+   }
+   letra="X";
+    document.getElementById("nVJ1").innerHTML = vitJog1;
+	  document.getElementById("nVJ2").innerHTML = vitJog2;
+	  document.getElementById("nVJ3").innerHTML = empate;
+}
+function Reset(){
+    vitJog1=0;
+	vitJog2=0;
+	empate=0;
+	novo();
+}
+function Sobre() {
+ alert('Lisli Software (R) Contato: Elismar 68 999845951!');
+}
+
+//-->
+</script>
+
+</head>
+<body>
+
+<table><tr><td>
+    <table class="ble">
+
+        <tr>
+            <td align="center" valign="middle" id="cel11" class="bla" onclick="joga(this.id);verif();"></td>
+            <td align="center" valign="middle" id="cel12" class="bla" onclick="joga(this.id);verif();"></td>
+            <td align="center" valign="middle" id="cel13" class="bla" onclick="joga(this.id);verif();"></td>
+        </tr>
+
+        <tr>
+            <td align="center" valign="middle" id="cel21" class="bla" onclick="joga(this.id);verif();"></td>
+            <td align="center" valign="middle" id="cel22" class="bla" onclick="joga(this.id);verif();"></td>
+            <td align="center" valign="middle" id="cel23" class="bla" onclick="joga(this.id);verif();"></td>
+        </tr>
+
+        <tr>
+            <td align="center" valign="middle" id="cel31" class="bla" onclick="joga(this.id);verif();"></td>
+            <td align="center" valign="middle" id="cel32" class="bla" onclick="joga(this.id);verif();"></td>
+            <td align="center" valign="middle" id="cel33" class="bla" onclick="joga(this.id);verif();"></td>
+        </tr>
+        <tr><img src="logo.png" > </tr>
+    </table>
+</td>
+    <td>
+        <fieldset><strong>
+            <legend> Informações</legend>
+            <P>Jogador 1::X </p>
+            <p id="nVJ1">0</p>
+            <hr>
+            <P>Jogador 2::O </p>
+
+            <p id="nVJ2">0</p>
+            <hr>
+            <P>Empates: </p>
+            <p id="nVJ3">0 </p><br>
+            <input type="button" name="limparTela"  class="blu" value="Reiniciar" onclick="novo();" /><br>
+            <input type="button" name="limparPlacar"  class="blu" value="Reset Score" onclick="Reset();" /><br>
+            <input type="button" name="Sobre"  class="blu" value="Sobre" onclick=" Sobre();" />
+
+        </fieldset>
+    </td></table>
+
+<p>Feito por Elismar 4ºPeriodo SPI IFAC
+</body>
+</html>

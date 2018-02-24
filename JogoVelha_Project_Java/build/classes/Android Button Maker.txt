@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle" >
+<corners
+android:topLeftRadius="10dp"
+android:topRightRadius="0dp"
+android:bottomLeftRadius="0dp"
+android:bottomRightRadius="10dp"
+/>
+<gradient
+android:angle="45"
+android:centerX="35%"
+android:centerColor="#47A891"
+android:startColor="#E8E8E8"
+android:endColor="#000000"
+android:type="linear"
+/>
+<padding
+android:left="0dp"
+android:top="0dp"
+android:right="0dp"
+android:bottom="0dp"
+/>
+<size
+android:width="270dp"
+android:height="60dp"
+/>
+<stroke
+android:width="3dp"
+android:color="#878787"
+/>
+</shape>
+
+<Button
+android:id="@+id/angry_btn"
+
+android:text="Button"
+android:textColor="#FFFFFF"
+android:textSize="30sp"
+
+android:layout_width="270dp"
+android:layout_height="60dp"
+android:background="@drawable/buttonshape"
+android:shadowColor="#A8A8A8"
+android:shadowDx="0"
+android:shadowDy="0"
+android:shadowRadius="5"
+/>
+Button angryButton = (Button) findViewById(R.id.angry_btn);
+angryButton.setOnClickListener(new View.OnClickListener() {
+public void onClick(View v) {
+// Click event trigger here
+}
+});
